@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="burgundy">#800020</color>
+    <color name="warm_cream">#F3E6D5</color>
+    <color name="off_white">#FFF9F2</color>
+    <color name="rosy_red">#D45060</color>
 </resources>

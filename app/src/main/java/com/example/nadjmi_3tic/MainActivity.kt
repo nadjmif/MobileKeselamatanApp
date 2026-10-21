@@ -1,20 +1,16 @@
 package com.example.nadjmi_3tic
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.nadjmi_3tic.databinding.ActivityLoginBinding
+import androidx.fragment.app.Fragment
 import com.example.nadjmi_3tic.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,45 +18,45 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbarMain)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val nama = intent.getStringExtra("nama")
-        val umur = intent.getIntExtra("umur", 0)
 
-        Log.w("hasil", "Nama: $nama Umur: $umur")
-        binding.btnKembali.setOnClickListener {
-
-//            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-//            startActivity(intent)
-            finish()
-        }
-        binding.teks.setText(nama)
-
-        binding.btnSnack.setOnClickListener{
-            Snackbar.make(binding.root, "Ini adalah Snackbar", Snackbar.LENGTH_SHORT)
-                .setAction("Tutup"){
-                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                }
-                .show()
+        // Load default fragment (Home)
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment())
         }
 
-        binding.btnAlert.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Konfirmasi")
-                .setMessage("Apakah Anda yakin ingin melanjutkan?")
-                .setPositiveButton("Ya") { dialog, _ ->
-                    dialog.dismiss()
-                    Log.e("Info Dialog","Anda memilih Ya!")
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_beranda -> {
+                    loadFragment(HomeFragment())
+                    true
                 }
-                .setNegativeButton("Batal") { dialog, _ ->
-                    dialog.dismiss()
-                    Log.e("Info Dialog","Anda memilih Tidak!")
+                R.id.nav_materi -> {
+                    loadFragment(MateriFragment())
+                    true
                 }
-                .show()
+                R.id.nav_kontak -> {
+                    loadFragment(KontakFragment())
+                    true
+                }
+                R.id.nav_pengaturan -> {
+                    loadFragment(SettingsFragment())
+                    true
+                }
+                else -> false
+            }
         }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }
