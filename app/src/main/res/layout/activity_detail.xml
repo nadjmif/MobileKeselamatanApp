@@ -1,6 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    tools:context=".DetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
+
+        <!-- Material Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/burgundy"
+            app:navigationIcon="@drawable/ic_launcher_foreground"
+            app:navigationIconTint="@color/white"
+            app:title="Detail Materi"
+            app:titleTextColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Featured Image Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardImage"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarDetail">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Detail Image"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/images" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Topic Title & Subtitle -->
+        <TextView
+            android:id="@+id/tvTopicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:text="Kebakaran"
+            android:textColor="@color/burgundy"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardImage" />
+
+        <TextView
+            android:id="@+id/tvTopicDescShort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="4dp"
+            android:text="Pencegahan, evakuasi, dan penanganan."
+            android:textColor="#666666"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTopicName" />
+
+        <!-- Deskripsi Section -->
+        <TextView
+            android:id="@+id/tvDeskripsiLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Deskripsi"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTopicDescShort" />
+
+        <TextView
+            android:id="@+id/tvDeskripsiContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="4dp"
+            android:text="Kebakaran adalah peristiwa terbakaranya suatu benda atau bahan yang tidak terkendali. Kebakaran dapat terjadi di rumah, sekolah, kantor, maupun tempat umum lainnya. Penting untuk memahami cara pencegahan, evakuasi, dan penanganannya agar risiko dapat diminimalkan."
+            android:textColor="#444444"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDeskripsiLabel" />
+
+        <!-- Langkah-Langkah Tanggap Darurat -->
+        <TextView
+            android:id="@+id/tvStepsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Langkah-Langkah Tanggap Darurat"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDeskripsiContent" />
+
+        <!-- Steps container -->
+        <LinearLayout
+            android:id="@+id/layoutSteps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStepsLabel">
+
+            <!-- Step 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Tetap tenang dan jangan panik."
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Step 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Segera aktifkan alarm kebakaran (jika ada)."
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Step 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Gunakan jalur evakuasi dan keluar dari gedung."
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Step 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Jangan menggunakan lift."
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Step 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Kumpul di titik aman dan lakukan pengecekan jumlah orang."
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Emergency Number Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardEmergency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/warm_cream"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutSteps">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/ic_launcher_background"
+                    android:backgroundTint="@color/rosy_red"
+                    android:contentDescription="Phone Icon"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_launcher_foreground"
+                    app:tint="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomor Darurat"
+                        android:textColor="@color/burgundy"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Jika terjadi kebakaran, segera hubungi: \n113 (Pemadam Kebakaran)"
+                        android:textColor="#333333"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
